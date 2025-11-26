@@ -354,7 +354,10 @@ footer {
     video {
         width: 100%;
     }
-
+    #teacher-details-box {
+        max-width: 300px;
+    }
+    
     #teacher-details-box .introductory-video iframe{
         
         width: auto;
