@@ -6,7 +6,6 @@
     scroll-behavior: smooth;
 }
 
-
 body {
     font-family: 'Arial', sans-serif;
     background-color: #AEC2E0;
@@ -355,6 +354,12 @@ footer {
     video {
         width: 100%;
     }
+
+    #teacher-details-box .introductory-video iframe{
+        
+        width: auto;
+        height: auto;
+    }
 }
 @media(max-width:400px){
     .static-content h2{
@@ -363,6 +368,11 @@ footer {
     }
     #teacher-details-box {
         max-width: 200px;
+    }
+    #teacher-details-box .introductory-video iframe{
+        
+        width: 150px;
+        height: 150px;
     }
 }
 @media (min-width: 768px) {

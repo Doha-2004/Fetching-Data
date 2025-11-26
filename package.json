@@ -1,0 +1,22 @@
+{
+  "name": "fetch_task",
+  "version": "1.0.0",
+  "description": "",
+  "main": "action.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node filesJS/action.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Doha-2004/Fetching-Data.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Doha-2004/Fetching-Data/issues"
+  },
+  "homepage": "https://github.com/Doha-2004/Fetching-Data#readme"
+}

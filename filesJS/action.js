@@ -1,76 +1,78 @@
 // button appears in the case that scroll to top >= 600 
-let buttonUp=document.getElementById("button-up");
-window.onscroll=function(){
-    if(window.scrollY>=600){
-        buttonUp.style.display="block"
+let buttonUp = document.getElementById("button-up");
+window.onscroll = function(){
+    if(window.scrollY >= 600){
+        buttonUp.style.display = "block"
     }
     else{
-        buttonUp.style.display="none"
-
+        buttonUp.style.display = "none"
     }
 };
-buttonUp.onclick=function(){
+buttonUp.onclick = function(){
    window.scrollTo({
-    left:0,
-    top:0,
-    behavior:"smooth",
+    left: 0,
+    top: 0,
+    behavior: "smooth",
    });
-    
 };
+
 // the start basic
-let API_Link="https://reqres.in/api/users?page=";
-let teachersBox=document.getElementById("teachers-box");
-let prevButton=document.getElementById("prev-page");
-let nextButton=document.getElementById("next-page");
+let API_Link = "https://reqres.in/api/users?page=";
+let teachersBox = document.getElementById("teachers-box");
+let prevButton = document.getElementById("prev-page");
+let nextButton = document.getElementById("next-page");
 let currentPage = 1;
-let totalPages = 0;
+let total_pages = 0;
 
 async function fetchTeachers(page) {
     try{
-    let result=await fetch(`${API_Link}${page}`);
-    let data=await result.json();
-    return data;
+        let result = await fetch(`${API_Link}${page}`); 
+        let data = await result.json();
+        return data;
     }
     catch(error){
-     console.error('Error : ',error);
+        console.error('Error : ', error);
     }
 }
 
 function displayTeachers(teachers){
-    teachersBox.innerHTML=teachers.map(teacher =>`
+    teachersBox.innerHTML = teachers.map(teacher => `
         <div class="teacher-card">
           <img src="${teacher.avatar}" alt="${teacher.first_name} ${teacher.last_name}" width="100">
           <h3>${teacher.first_name} ${teacher.last_name}</h3>
           <a href="../pagesHTML/teacher.html?id=${teacher.id}">View Details</a>
         </div>
-        `).join("");
+    `).join("");
 }
 
-function changePagination(page,total){
-    prevButton.disabled=page<=1;
-    nextButton.disabled=page>=total;
+function changePagination(page, total){
+    prevButton.disabled = page <= 1;
+    nextButton.disabled = page >= total;
 }
 
-async function  loadPageData(page) {
-    let data=await fetchTeachers(page) ;
+async function loadPageData(page) {
+    let data = await fetchTeachers(page);
     displayTeachers(data.data);
-    changePagination(page,data.totalPages);
-    currentPage=page;
+    changePagination(page, data.total_pages);
+    total_pages = data.total_pages; // update total_pages
+    currentPage = page;
 }
+
 prevButton.addEventListener('click', () => {
-    if (currentPage >1) {
+    if (currentPage > 1) {
         loadPageData(currentPage - 1);
     }
 });
+
 nextButton.addEventListener('click', () => {
-    if (currentPage < totalPages) {
+    if (currentPage < total_pages) {
         loadPageData(currentPage + 1);
     }
 });
-
-
-fetch(`${API_Link}1`).then(result =>result.json()).then(data => {
-    totalPages = data.total_pages;
-    ;
-    loadPageData(currentPage);
-});
+// Initial load
+fetch(`${API_Link}1`)
+    .then(result => result.json())
+    .then(data => {
+        total_pages = data.total_pages;
+        loadPageData(currentPage);
+    });
