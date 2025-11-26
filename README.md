@@ -30,14 +30,13 @@ Reqres API
 
 
 💻 Installation
+```
 git clone https://github.com/Doha-2004/Fetching-Data.git
 cd Fetching-Data
 # Open index.html in your browser
-ذذذّّ
-ذذذذ
+```
 📂 Project Structure
 ```
-ذذذططكككط
 Fetching-Data/
 │── index.html
 │── pagesHTML/
